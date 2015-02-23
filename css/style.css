@@ -1,0 +1,107 @@
+
+/*
+WR TEMPLATE
+*/
+
+article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block;}
+*,*:after,*:before {-webkit-box-sizing:border-box; -moz-box-sizing:border-box; box-sizing:border-box; padding:0; margin:0}
+
+
+::-webkit-scrollbar{width:3px; background:#000;}
+::-webkit-scrollbar-thumb{background:#FFF; -webkit-border-radius:0px; -webkit-box-shadow:0px 1px 2px rgba(0, 0, 0, 0.75);}
+::-webkit-scrollbar-corner{background: #000;}
+
+
+@font-face {
+    font-family: 'chaletparisnineteensixty';
+    src: url('../fonts/chalet_paris_nineteen_sixty-webfont.eot');
+    src: url('../fonts/chalet_paris_nineteen_sixty-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/chalet_paris_nineteen_sixty-webfont.svg#chaletparisnineteensixty') format('svg'),
+		 url('../fonts/chalet_paris_nineteen_sixty-webfont.woff') format('woff'),
+         url('../fonts/chalet_paris_nineteen_sixty-webfont.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* LOADER */
+#preloader {position:fixed;top:0;left:0;right:0;bottom:0;background-color:#000; z-index:10000}
+#status {width:200px; height:200px; position:absolute; left:50%; top:50%; background-image:url(../img/loader.gif); background-repeat:no-repeat; 
+background-position:center;margin:-100px 0 0 -100px;}
+
+
+/* BODY AND WRAPPER */
+html, body{margin:0px; padding:0px; cursor:default; /*font-family: 'Open Sans', sans-serif;*/ font-family: 'Roboto Condensed', sans-serif; color:#F1F1F1; font-size:24px}
+body{overflow-x:hidden; background-color:#06131a; color:#FFF;}
+#mainWrapper{position:absolute; width:100%; height:100%; transition:none !important;}
+canvas{position:fixed; z-index: 2;}
+
+#overlay{position:absolute; width:100%; height:100%; z-index:3;  background-color:hsla(0,0%,0%,0.25);  /* opacity:0.75; */ pointer-events:none;}
+.pattern1{background-image:url(../img/pattern1.png);}
+.pattern2{background-image:url(../img/pattern2.png);}
+.pattern3{background-image:url(../img/pattern3.png);}
+.pattern4{background-image:url(../img/pattern4.png);}
+.pattern5{background-image:url(../img/pattern5.png);}
+.pattern6{background-image:url(../img/pattern6.png);}
+
+/* INDEX */
+.section_active{display:block !important; opacity:1 !important; pointer-events:auto !important;}
+#mainIndex{position:absolute; width:100%; min-height:100%; text-align:center; z-index:3; font-family: 'chaletparisnineteensixty';}
+#logo{position:absolute; width:150px; top:5%; left:50%; height:150px; margin:0px 0px 0px -75px; z-index:4; cursor:pointer; transition:all 0.25s ease-out;}
+#logo > img{width:100%; height:100$%}
+svg path{fill:#FFF !important}
+svg path{transition:all 0.5s ease-out; -webkit-transform-origin: 50% 50% !important; -moz-transform-origin: 50% 50% !important; -ms-transform-origin: 50% 50% !important; transform-origin: 50% 50% !important; } 
+#logo.alternate > svg path{-webkit-transform: rotateY( 360deg ) !important; fill:#FFF !important;}
+svg{width:100%; height:100%;}
+svg:hover path{}
+
+
+
+/* TIMER */
+.center_vertical{position:absolute; width:100%; height:auto; z-index: 3}
+#Countdown{display:block;}
+#Countdown > span{display:inline-block;}
+.countdown-section{display:inline-block; text-align:center; margin:0px 25px;}
+.countdown-amount{font-size:98px; line-height:98px;}
+.countdown-period{display:block; font-size:16px; margin-top:0px; text-align:center; letter-spacing:2px; text-transform:uppercase;}
+
+#scroller{position:relative; width:100%; height:70px; margin-bottom:25px; transition:all 0.25s ease-out;} 
+#scroller > p{position:absolute; width:100%; top:-50px; color:#FFF; font-size:48px; line-height: 48px; text-transform: uppercase; opacity:0; display:block; pointer-events: none; transition:all 1s ease-out;}
+#scroller > p.scroller_selected {opacity:1; top:0px;}
+
+
+/* BTN */
+.btn_container{position:absolute; width:100%; bottom:5%; z-index: 3;} 
+a.btn{padding:10px 30px 5px; border-radius:15px; font-size: 36px; color:#FFF; background: none; border-color: #FFF; text-transform: uppercase; transition:all 0.5s ease-out;}
+#index_btn{width:162px; height:64px; margin:0px auto; cursor:pointer;}
+#index_btn:hover > a.btn{color:#000; -webkit-transform: rotateX( 360deg ) !important; background-color:#FFF;}
+
+/* MAIN CONTENTS */
+#mainContents{position:absolute; width:100%; min-height:100%; z-index:3; display:none; text-align:center; background-color:hsla(250,35%,5%,0.75); color:#FFF;}
+#mainContents > .container{padding-top:200px; width:750px;}
+#mainContents >  .container > p{font-size:18px; text-align: justify; line-height: 24px}
+h1{margin-top:75px; font-size:48px; color:deepskyblue;}
+
+/* SOCIAL ICONS */
+#socialIcons{width:100%; padding:60px 0px 10px 0px; margin:60px 0px 0px 0px; border-top:1px dotted hsla(0,0%,100%, 0.15);}
+#socialIcons > a{font-size:32px; color:#FFF; text-decoration: none; margin: 0px 5px; transition:all 0.25s ease-out;}
+#socialIcons > a:hover{color:deepskyblue;}
+
+
+/* FORM NEWSLETTER */
+.form_newsletter{clear:both; padding-top:20px}
+input#txtEmail{width:80%; font-family: 'chaletparisnineteensixty'; padding:11px 10px 7px 15px; float:left; border-radius:15px 0px 0px 15px; font-size: 24px; color:#FFF; background: none; border:1px solid #FFF; transition:all 0.5s ease-out;}
+input#submitEmail{width:20%; font-family: 'chaletparisnineteensixty'; padding:13px 0px 7px 0px; border:none; border-radius:0px 15px 15px 0px; font-size: 24px; background-color: #FFF; color:#000;}
+div.email_alert{font-size:18px; font-weight: 300; color:deepskyblue; height:24px; padding:25px 0px; text-align:center; opacity:0}
+input:focus, textarea:focus{outline: 0px}
+::-webkit-input-placeholder {color: #FFF;}
+:-moz-placeholder {color: #FFF;}
+::-moz-placeholder {color: #FFF;}
+:-ms-input-placeholder {color: #FFF;}
+
+
+/* SLIDESHOW */
+ul, li{margin:0px; padding:0px; list-style:none;}
+#backgrounds{position:fixed; width:100%; height:100%; top:0px; left:0px; z-index:0;}
+#backgrounds > ul#main_slideshow{position:absolute; overflow:hidden; width:100%; height:100%;}
+#backgrounds li.selected{display:block; z-index:3;}
+#backgrounds li, #backgrounds li img{position:absolute}

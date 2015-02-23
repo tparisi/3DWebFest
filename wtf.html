@@ -1,0 +1,316 @@
+
+<html>
+<head>
+    <title>Oculus Rift</title>
+    <meta http-equiv='Content-Type' content='text/html;charset=utf-8'/>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1,IE=edge" />
+    <script type="text/javascript" src="http://www.x3dom.org/download/dev/x3dom.js"></script>
+    <link rel='stylesheet' type='text/css' href='http://www.x3dom.org/download/dev/x3dom.css'>
+</head>
+<body style='width:100%; height:100%; border:0; margin:0; padding:0;'>
+
+<x3d id='x3dElement' showStat='false' showLog='false' style='width:100%; height:100%; border:0; margin:0; padding:0;'>
+<!-- <x3d id='x3dElement' showStat='false' showLog='false' width="800px" height="600px"> -->
+    <scene id='scene'>
+        <Environment frustumCulling="false"></Environment>
+        <worldInfo info='"Created using RenderPark (http://www.cs.kuleuven.ac.be/cwis/research/graphics/RENDERPARK/)"'
+                   title='Some nice model'></worldInfo>
+        <navigationInfo headlight='false' type='"EXAMINE" "WALK"'></navigationInfo>
+        <viewpoint id='vpp' def='vp' description='ViewPoint 1' centerofrotation='3.4625 1.73998 -5.55'
+                    orientation='0 1 0 2.99229' position='4.17102 1.00905 -6.97228'
+                    znear="0.001" zfar="300"></viewpoint>
+        <viewpoint def='AOPT_CAM' centerofrotation='3.4625 1.73998 -5.55' position='3.4625 1.73998 8.69028'></viewpoint>
+        <background DEF='bgnd' skyColor="0 0 0"></background>
+        <group id='root' render='false'>
+            <group DEF='theScene'>
+               <shape DEF='_G_0'>
+                    <appearance>
+                        <material diffuseColor='1 1 1'></material>
+                    </appearance>
+                    <binaryGeometry DEF='BG_0' vertexCount='39268 42234' primType='"TRIANGLESTRIP" "TRIANGLES"'
+                                    position='3.5 1.73999583721 -5.62500476837' size='7 3.52000808716 11.2500095367'
+                                    index='binGeoClassroom/BG_0_indexBinary.bin'
+                                    coord='binGeoClassroom/BG_0_coordBinary.bin'
+                                    normal='binGeoClassroom/BG_0_normalBinary.bin'
+                                    color='binGeoClassroom/BG_0_colorBinary.bin'></binaryGeometry>
+                </shape>
+                <shape DEF='_G_1'>
+                    <appearance>
+                        <material diffuseColor='1 1 1'></material>
+                    </appearance>
+                    <binaryGeometry DEF='BG_1' vertexCount='47266 36978' primType='"TRIANGLESTRIP" "TRIANGLES"'
+                                    position='3.46249985695 1.7399777174 -5.5' size='7.07499980927 3.48003673553 11'
+                                    index='binGeoClassroom/BG_1_indexBinary.bin'
+                                    coord='binGeoClassroom/BG_1_coordBinary.bin'
+                                    normal='binGeoClassroom/BG_1_normalBinary.bin'
+                                    color='binGeoClassroom/BG_1_colorBinary.bin'></binaryGeometry>
+                </shape>
+                <shape DEF='_G_2'>
+                    <appearance>
+                        <material diffuseColor='1 1 1'></material>
+                    </appearance>
+                    <binaryGeometry DEF='BG_2' vertexCount='19026 4968' primType='"TRIANGLESTRIP" "TRIANGLES"'
+                                    position='3.56500005722 1.73996007442 -5.55000257492'
+                                    size='6.86999988556 3.51999878883 11.4000043869'
+                                    index='binGeoClassroom/BG_2_indexBinary.bin'
+                                    coord='binGeoClassroom/BG_2_coordBinary.bin'
+                                    normal='binGeoClassroom/BG_2_normalBinary.bin'
+                                    color='binGeoClassroom/BG_2_colorBinary.bin'></binaryGeometry>
+                </shape>
+            </group>
+        </group>
+
+
+
+
+
+            
+
+            <group render="true">
+            <group def='left'>
+                <shape>
+                    <appearance>
+                        <renderedtexture id="rtLeft" stereoMode="LEFT_EYE" update='ALWAYS' oculusRiftVersion="2"
+                                         dimensions='640 800 4' repeatS='false' repeatT='false'>
+                            <viewpoint use='vp' containerfield='viewpoint'></viewpoint>
+                            <background use='bgnd' containerfield='background'></background>
+                            <!--group USE='left' containerField="excludeNodes"></group-->
+                            <group use='theScene' containerfield="scene"></group>
+                        </renderedtexture>
+                        <composedshader>
+                            <field name='tex' type='SFInt32' value='0'></field>
+                            <field name='leftEye' type='SFFloat' value='1'></field>
+                            <shaderpart type='VERTEX'>
+                                attribute vec3 position;
+                                attribute vec2 texcoord;
+
+                                uniform mat4 modelViewProjectionMatrix;
+                                varying vec2 fragTexCoord;
+
+                                void main()
+                                {
+                                vec2 pos = sign(position.xy);
+                                fragTexCoord = texcoord;
+
+                                gl_Position = vec4((pos.x - 1.0) / 2.0, pos.y, 0.0, 1.0);
+                                //gl_Position = vec4(pos.xy / 4.0 + vec2(-0.75,0.75), 0.0, 1.0);
+                                }
+                            </shaderpart>
+                            <shaderpart def="frag" type='FRAGMENT'>
+                                #ifdef GL_ES
+                                precision highp float;
+                                #endif
+
+                                uniform sampler2D tex;
+                                uniform float leftEye;
+                                varying vec2 fragTexCoord;
+
+                                void main()
+                                {
+                                float distortionScale = 0.7; //0.685;
+                                //float distortionK[4] = float[](1.0, 0.22, 0.24, 0.0);
+                                vec2 lensCenter = vec2(0.151976495726, 0.0);
+                                if (leftEye == 0.0) {
+                                lensCenter.x *= -1.0;
+                                }
+
+                                vec2 theta = (fragTexCoord * 2.0) - 1.0;
+                                float rSq = theta.x * theta.x + theta.y * theta.y;
+                                vec2 rvec = theta * (1.0 + 0.22 * rSq + 0.24 * rSq * rSq); //+ 0.0 * rSq * rSq * rSq);
+                                vec2 texCoord = (distortionScale*rvec+(1.0-distortionScale)*lensCenter + 1.0) / 2.0;
+
+                                if (any(notEqual(clamp(texCoord, vec2(0.0, 0.0), vec2(1.0, 1.0)) - texCoord,
+                                vec2(0.0, 0.0)))) {
+                                //if (leftEye == 0.0) gl_FragColor = vec4(1.0,1.0,0.0,1.0);
+                                //else gl_FragColor = vec4(1.0,0.0,0.0,1.0);
+                                discard;
+                                }
+                                else {
+                                vec3 col = texture2D(tex, texCoord).rgb;
+                                gl_FragColor = vec4(col, 1.0);
+                                }
+                                //gl_FragColor = texture2D(tex, fragTexCoord);
+                                }
+                            </shaderpart>
+                        </composedshader>
+                    </appearance>
+                    <plane solid="false"></plane>
+                </shape>
+            </group>
+            <group def='right'>
+                <shape>
+                    <appearance>
+                        <renderedtexture id="rtRight" stereoMode="RIGHT_EYE" update='ALWAYS' oculusRiftVersion="2"
+                                         dimensions='640 800 4' repeatS='false' repeatT='false'>
+                            <viewpoint use='vp' containerfield='viewpoint'></viewpoint>
+                            <background use='bgnd' containerfield='background'></background>
+                            <group use='theScene' containerfield="scene"></group>
+                        </renderedtexture>
+                        <composedshader>
+                            <field name='tex' type='SFInt32' value='0'></field>
+                            <field name='leftEye' type='SFFloat' value='0'></field>
+                            <shaderpart type='VERTEX'>
+                                attribute vec3 position;
+                                attribute vec2 texcoord;
+
+                                uniform mat4 modelViewProjectionMatrix;
+                                varying vec2 fragTexCoord;
+
+                                void main()
+                                {
+                                vec2 pos = sign(position.xy);
+                                fragTexCoord = texcoord;
+
+                                gl_Position = vec4((pos.x + 1.0) / 2.0, pos.y, 0.0, 1.0);
+                                }
+                            </shaderpart>
+                            <shaderpart use="frag" type='FRAGMENT'>
+                            </shaderpart>
+                        </composedshader>
+                    </appearance>
+                    <plane solid="false"></plane>
+                </shape>
+            </group>
+        </group>
+    </scene>
+</x3d>
+
+<!--button style="position:absolute; top:0px; left:0px;" onclick="x3dom.toggleFullScreen();">
+    Fullscreen
+</button-->
+
+<script>
+    var runtime = null;
+    var rtLeft, rtRight;
+    var lastW, lastH;
+
+    var vrHMD = null, vrSensor = null;
+
+    document.onload = function ()
+    {
+        runtime = document.getElementById('x3dElement').runtime;
+        rtLeft = document.getElementById('rtLeft');
+        rtRight = document.getElementById('rtRight');
+
+        lastW = +runtime.getWidth();
+        lastH = +runtime.getHeight();
+
+        var hw = Math.round(lastW / 2);
+        rtLeft.setAttribute('dimensions',  hw + ' ' + lastH + ' 4');
+        rtRight.setAttribute('dimensions', hw + ' ' + lastH + ' 4');
+
+        var viewpoint = document.getElementById('vpp');
+        var initDone = false;
+
+        runtime.enterFrame = function () {
+            if (!vrSensor)
+                return;
+            var state = vrSensor.getState();
+
+            if (!initDone) {
+                console.log(state);
+            }
+
+            var h = state.orientation;
+            var q = new x3dom.fields.Quaternion(h.x, h.y, h.z, h.w);
+
+            var aa = q.toAxisAngle();
+            //console.log(aa[0].x + " " + aa[0].y + " " + aa[0].z + " " + aa[1]);
+
+            viewpoint.setAttribute("orientation", aa[0].x + " " + aa[0].y + " " + aa[0].z + " " + aa[1]);
+
+            var posi = viewpoint.requestFieldRef('position');
+            posi.x = 4.17102 + state.position.x;
+            posi.y = 1.00905 + state.position.y;
+            posi.z = -6.97228 + state.position.z;
+            viewpoint.releaseFieldRef('position');
+        };
+
+        runtime.exitFrame = function ()
+        {
+            var w = +runtime.getWidth() * 2;
+            var h = +runtime.getHeight() * 2;
+
+            if (w != lastW || h != lastH)
+            {
+                var half = Math.round(w / 2);
+                rtLeft.setAttribute('dimensions',  half + ' ' + h + ' 4');
+                rtRight.setAttribute('dimensions', half + ' ' + h + ' 4');
+
+                console.log(w + ", " + h);
+
+                lastW = w;
+                lastH = h;
+            }
+
+            if (!initDone) {
+                initDone = true;
+                //x3dom.toggleFullScreen();
+            }
+
+            runtime.triggerRedraw();
+        };
+
+        /*
+        var canvas = document.getElementsByTagName("canvas")[0];
+
+        if (canvas.webkitRequestFullscreen) {
+            canvas.webkitRequestFullscreen({ vrDisplay: vrHMD });
+        } else if (canvas.mozRequestFullScreen) {
+            canvas.mozRequestFullScreen({ vrDisplay: vrHMD });
+        }
+        */
+    };
+
+    /* ----------------------------------------------------------- */
+    function vrDeviceCallback(vrdevs) {
+        var i;
+
+        // First, find a HMD -- just use the first one we find
+        for (i = 0; i < vrdevs.length; ++i) {
+            if (vrdevs[i] instanceof HMDVRDevice) {
+                vrHMD = vrdevs[i];
+                console.log(vrHMD);
+                break;
+            }
+        }
+
+        if (!vrHMD)
+            return;
+
+        // Then, find that HMD's position sensor
+        for (i = 0; i < vrdevs.length; ++i) {
+            if (vrdevs[i] instanceof PositionSensorVRDevice &&
+                vrdevs[i].hardwareUnitId == vrHMD.hardwareUnitId) {
+                vrSensor = vrdevs[i];
+                console.log(vrSensor);
+                break;
+            }
+        }
+
+        if (!vrHMD || !vrSensor) {
+            alert("Didn't find a HMD and sensor!");
+            return;
+        }
+
+        var leftFOV = vrHMD.getCurrentEyeFieldOfView("left");
+        var rightFOV = vrHMD.getCurrentEyeFieldOfView("right");
+
+        console.log(leftFOV);
+        console.log(rightFOV);
+
+        var leftTranslation = vrHMD.getEyeTranslation("left");
+        var rightTranslation = vrHMD.getEyeTranslation("right");
+
+        console.log(leftTranslation);
+        console.log(rightTranslation);
+    }
+
+    if (navigator.getVRDevices)
+        navigator.getVRDevices().then(vrDeviceCallback);
+
+    //http://blog.tojicode.com/2014/07/bringing-vr-to-chrome.html
+    //http://blog.bitops.com/blog/2014/08/20/updated-firefox-vr-builds/
+</script>
+</body>
+</html>
