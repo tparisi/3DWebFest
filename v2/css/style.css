@@ -786,10 +786,10 @@
 	@keyframes reveal-banner { 0% { opacity: 0; } 100% { opacity: 1; } }
 
 	#banner {
-		background-size: 100%;
+		background-size: 100% 100%;
 		background-attachment: scroll, scroll, scroll, fixed;
 		background-color: #645862;
-		background-image: url("../img/splash.jpg");
+		background-image: url("../img/splash3.png");
 		background-repeat: no-repeat, no-repeat, repeat, no-repeat;
 		color: white;
 		cursor: default;
