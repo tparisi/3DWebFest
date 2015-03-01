@@ -52,12 +52,12 @@
 /* CTA */
 
 	#cta {
-		padding: 4em;
+		padding: 0em;
 		background-attachment: scroll;
 	}
 
 /* Footer */
 
 	#footer {
-		padding: 4em;
+		padding: 2em;
 	}

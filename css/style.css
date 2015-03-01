@@ -29,7 +29,7 @@
 	body, input, select, textarea {
 		color: #fff;
 		font-family: 'Lato', sans-serif;
-		font-size: 15pt;
+		font-size: 14pt;
 		font-weight: 300;
 		letter-spacing: 0.025em;
 		line-height: 1.75em;
@@ -41,7 +41,7 @@
 		-o-transition: color 0.2s ease-in-out, border-color 0.2s ease-in-out, background-color 0.2s ease-in-out;
 		-ms-transition: color 0.2s ease-in-out, border-color 0.2s ease-in-out, background-color 0.2s ease-in-out;
 		transition: color 0.2s ease-in-out, border-color 0.2s ease-in-out, background-color 0.2s ease-in-out;
-		color: #3fb1a3;
+		color: #39aaf6;
 		text-decoration: none;
 		border-bottom: dotted 1px;
 	}
@@ -56,6 +56,8 @@
 
 	p, ul, ol, dl, table, blockquote {
 		margin: 0 0 2em 0;
+		text-align: justify;
+		font-size: 16px;
 	}
 
 	h1, h2, h3, h4, h5, h6 {
@@ -117,13 +119,18 @@
 	}
 
 	header.special {
-		margin-bottom: 5em;
-		padding-top: 7em;
+		/*margin-bottom: 5em;
+		padding: 5em 0em;
 		position: relative;
+		text-align: center;*/
 		text-align: center;
 	}
 
-		header.special:before, header.special:after {
+	header.special > p{
+		text-align: justify;
+	}
+
+		/*header.special:before, header.special:after {
 			border-bottom: solid 1.5px;
 			border-top: solid 1.5px;
 			content: '';
@@ -132,7 +139,7 @@
 			position: absolute;
 			top: 1.75em;
 			width: 43%;
-		}
+		}*/
 
 		header.special:before {
 			left: 0;
@@ -144,6 +151,7 @@
 
 		header.special h2 {
 			margin-bottom: 0;
+			text-align: center;
 		}
 
 		header.special h2 + p {
@@ -397,6 +405,7 @@
 
 	ul.icons {
 		cursor: default;
+		text-align: center;
 	}
 
 		ul.icons li {
@@ -434,6 +443,7 @@
 
 	ul.buttons {
 		cursor: default;
+		text-align: center;
 	}
 
 		ul.buttons:last-child {
@@ -572,7 +582,8 @@
 		}
 
 		.wrapper.style2 {
-			background-image: url("../img/sky.jpg");
+			/*background-image: url("../img/sky.jpg");*/
+			background-color:#36acf6;
 			background-size: 100%;
 			background-repeat: no-repeat, no-repeat;
 			color: white;
@@ -637,7 +648,7 @@
 			position: absolute;
 			right: 1.5em;
 			text-transform: uppercase;
-			top: 0.75em;
+			top: 0.6em;
 		}
 
 			#header nav ul li {
@@ -712,13 +723,13 @@
 			background: transparent;
 			box-shadow: none;
 			color: white;
-			padding: 2em 2.5em;
+			padding: 1em 1.5em;
 			position: absolute;
 		}
 
 			#header.alt nav {
-				right: 2.5em;
-				top: 1.75em;
+				/*right: 1.5em;
+				top: 1.5em;*/
 			}
 
 				#header.alt nav ul li.active > a, #header.alt nav ul li:hover > a {
@@ -726,7 +737,7 @@
 				}
 
 /* Dropotron */
-
+ 
 	.dropotron {
 		background: #fff;
 		box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.075);
@@ -856,9 +867,10 @@
 
 	#main {
 		background-image: url("../img/bg.png");
+		background-repeat: repeat;
 		background-position: top left, top right, bottom left, bottom right;
-		background-size: 25em;
-		padding: 7em 0;
+		/*background-size: 25em;*/
+		padding: 2em 0;
 	}
 
 		#main > :last-child {
@@ -878,39 +890,70 @@
 			}
 
 	body.index #main {
-		padding-top: 5em;
+		padding-top: 2em;
+	}
+
+	.examples{
+		background-color:rgba(0,0,0,0.2);
+	}
+
+	.examples > header{
+		margin-top: 0.75em;
+	}
+
+	.examples > p{
+		padding:0em 1.75em 1.5em 1.75em;
+	}
+
+	.thumb{
+		width:100%;
+		height:233px;
 	}
 
 /* CTA */
 
 	#cta {
 		background-attachment: scroll, scroll, scroll, fixed;
-		background-color: #645862;
-		background-image: url("../img/art2.jpg");
+		background-color: #ce69a3;
+		/*background-image: url("../img/art2.jpg");*/
 		background-position: top left, top right, top left, bottom center;
 		background-repeat: no-repeat, no-repeat, repeat, no-repeat;
 		background-size: 100%;
 		color: white;
-		padding: 5em;
+		padding: 0em;
 		text-align: center;
 	}
 
 		#cta header {
-			margin-bottom: 2em;
+			margin-bottom: 0em;
 		}
+
+		#cta > header > h2{
+			margin-bottom: 0em;
+		}
+
+		#cta > header > h2 > a{
+			display: block;
+			width: 100%;
+			padding:4em;
+		}
+
+
 
 /* Footer */
 
 	#footer {
 		background: #e8eef4;
 		color: #7c8081;
-		padding: 5em 5em 10em 5em;
+		/*padding: 5em 5em 10em 5em;*/
+		padding-top:1em;
 		text-align: center;
 	}
 
 		#footer .copyright {
 			font-size: 0.8em;
 			line-height: 1em;
+			text-align: center;
 		}
 
 			#footer .copyright a {
@@ -944,7 +987,7 @@
 		#topButton .toggle:before {
 			-moz-osx-font-smoothing: grayscale;
 			-webkit-font-smoothing: antialiased;
-			font-family: FontAwesome;
+			font-family: 'Montserrat';
 			font-style: normal;
 			font-weight: normal;
 			text-transform: none !important;
