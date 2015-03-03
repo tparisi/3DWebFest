@@ -147,12 +147,11 @@
 /* Main */
 
 	#main {
-		background-size: 10em;
 		padding: 3.5em 0 2.5em 0;
 	}
 
 	body.index #main {
-		padding: 2.5em 0 0 0;
+		padding: 0 0 0 0;
 	}
 
 	body.contact #main {
