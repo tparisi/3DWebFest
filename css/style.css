@@ -801,11 +801,12 @@
 		background-size: 100% 100%;
 		background-attachment: scroll, scroll, scroll, fixed;
 		background-color: #645862;
-		background-image: url("../img/splash3.png");
+		background-image: url("../img/3dwebfest-cover.jpg");
 		background-repeat: no-repeat, no-repeat, repeat, no-repeat;
 		color: white;
 		cursor: default;
-		padding: 20em 0;
+		position:relative;
+		height:40em;
 		text-align: center;
 	}
 
