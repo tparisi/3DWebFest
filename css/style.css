@@ -29,6 +29,7 @@
 	body, input, select, textarea {
 		color: #fff;
 		font-family: 'Lato', sans-serif;
+		font-weight: 300;
 		font-size: 14pt;
 		font-weight: 300;
 		letter-spacing: 0.025em;
@@ -69,6 +70,7 @@
 	}
 
 		h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
+			font-weight: 300;
 			color: #fff;
 			text-decoration: none;
 			border: 0;
@@ -649,7 +651,7 @@
 			position: absolute;
 			right: 1.5em;
 			text-transform: uppercase;
-			top: 0.6em;
+			top: 0.2em;
 		}
 
 			#header nav ul li {
@@ -667,6 +669,7 @@
 					display: inline-block;
 					line-height: 1em;
 					padding: 0.6em 0.75em;
+					font-family: 'Lato';
 					text-decoration: none;
 				}
 
@@ -703,7 +706,7 @@
 				}
 
 				#header nav ul li.current > a {
-					font-weight: 900;
+					font-weight: 300;
 					color: #fff;
 				}
 
@@ -801,11 +804,12 @@
 		background-size: 100% 100%;
 		background-attachment: scroll, scroll, scroll, fixed;
 		background-color: #645862;
-		background-image: url("../img/splash3.png");
+		background-image: url("../img/3dwebfest-cover.jpg");
 		background-repeat: no-repeat, no-repeat, repeat, no-repeat;
 		color: white;
 		cursor: default;
-		padding: 20em 0;
+		position:relative;
+		height:40em;
 		text-align: center;
 	}
 
@@ -955,6 +959,11 @@
 			padding:4em;
 		}
 
+		.logo{
+			text-align: center;
+			margin-top:1.6em;
+		}
+
 
 
 /* Footer */
@@ -1004,7 +1013,7 @@
 		#topButton .toggle:before {
 			-moz-osx-font-smoothing: grayscale;
 			-webkit-font-smoothing: antialiased;
-			font-family: 'Montserrat';
+			font-family: 'Lato';
 			font-style: normal;
 			font-weight: normal;
 			text-transform: none !important;
