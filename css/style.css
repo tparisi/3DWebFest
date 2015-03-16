@@ -800,8 +800,12 @@
 	@-ms-keyframes reveal-banner { 0% { opacity: 0; } 100% { opacity: 1; } }
 	@keyframes reveal-banner { 0% { opacity: 0; } 100% { opacity: 1; } }
 
+	.loading-screen{
+		display:none;
+	}
+
 	#banner {
-		background-size: 100% 100%;
+		background-size: cover;
 		background-attachment: scroll, scroll, scroll, fixed;
 		background-color: #645862;
 		background-image: url("../img/3dwebfest-cover.jpg");
@@ -962,6 +966,10 @@
 		.logo{
 			text-align: center;
 			margin-top:1.6em;
+		}
+
+		.logo > img{
+			max-width: 200px;
 		}
 
 
