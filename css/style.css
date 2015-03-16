@@ -805,7 +805,7 @@
 	}
 
 	#banner {
-		background-size: contain;
+		background-size: cover;
 		background-attachment: scroll, scroll, scroll, fixed;
 		background-color: #645862;
 		background-image: url("../img/3dwebfest-cover.jpg");
